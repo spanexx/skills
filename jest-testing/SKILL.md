@@ -22,9 +22,40 @@ license: Proprietary
 - For NestJS, prefer `@nestjs/testing` patterns.
 
 ### 2) Install dependencies
-- `jest`
-- `ts-jest` (if TS)
-- `@types/jest`
+
+Base install:
+
+```bash
+npm install --save-dev jest
+```
+
+TypeScript options (official docs):
+
+Option A (recommended for TS projects): `ts-jest`
+
+```bash
+npm install --save-dev ts-jest
+```
+
+Option B (Babel transpilation):
+
+```bash
+npm install --save-dev @babel/preset-typescript
+```
+
+Type definitions (pick one):
+
+Option 1 (explicit imports):
+
+```bash
+npm install --save-dev @jest/globals
+```
+
+Option 2 (global types):
+
+```bash
+npm install --save-dev @types/jest
+```
 
 ### 3) Add scripts
 - `test`
@@ -38,6 +69,8 @@ license: Proprietary
 ### 5) Verification
 - `npm test`
 - Coverage report generated
+
+If you use `ts-jest`, ensure Jest is configured to transpile TS (ts-jest may require a config file depending on the repo).
 
 ## Acceptance checklist
 - [ ] Tests run in CI-friendly way

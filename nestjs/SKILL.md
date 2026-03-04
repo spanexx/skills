@@ -25,6 +25,40 @@ license: Proprietary
 - Updated imports/wiring
 - A short verification command list (build/test)
 
+## CLI-first workflow (official Nest CLI)
+
+### Create a new Nest project
+
+```bash
+nest new <name>
+```
+
+Notes:
+- Prompts for package manager.
+- Use `--skip-install` when you want to inspect scaffolding before installing.
+
+### Generate components
+
+Generate a module/controller/service:
+
+```bash
+nest g module <name>
+nest g controller <name>
+nest g service <name>
+```
+
+Or generate a full CRUD resource (TS only):
+
+```bash
+nest g resource <name>
+```
+
+### Build
+
+```bash
+nest build
+```
+
 ## Core rules
 - Keep controllers thin; put logic in services.
 - Use DTOs for request/response shapes.
@@ -66,6 +100,18 @@ src/
 ### 6) Testing
 - Add unit tests for services where feasible.
 - Add e2e tests if the repo already has that setup.
+
+## Verification (minimum)
+
+```bash
+nest build
+```
+
+If the repo has tests:
+
+```bash
+npm test
+```
 
 ## Common pitfalls
 - Putting DB logic directly into controllers

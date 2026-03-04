@@ -27,10 +27,31 @@ license: Proprietary
 - NestJS (TS)
 
 ### 2) Install dependencies
-- `eslint`
-- `prettier`
-- For TS: `@typescript-eslint/parser`, `@typescript-eslint/eslint-plugin`
-- Optional: `eslint-config-prettier`
+
+Prefer official CLI setup.
+
+ESLint (official):
+
+```bash
+npm init @eslint/config@latest
+```
+
+Prettier (official, recommended):
+
+```bash
+npm install --save-dev --save-exact prettier
+```
+
+Then create config files (official docs example):
+
+```bash
+node --eval "fs.writeFileSync('.prettierrc','{}\n')"
+node --eval "fs.writeFileSync('.prettierignore','# Ignore artifacts:\nbuild\ncoverage\n')"
+```
+
+Optional integrations:
+- For TypeScript projects, the ESLint init flow will offer TypeScript support and install the needed packages.
+- To avoid rule conflicts, you can add `eslint-config-prettier` if you use ESLint for formatting-adjacent rules.
 
 ### 3) Configure
 - Prefer minimal, non-conflicting rules
@@ -40,8 +61,24 @@ license: Proprietary
 - Recommend VS Code settings if repo uses them
 
 ### 5) Verification
-- `npm run lint` passes
-- `npm run format -- --check` (if implemented) passes
+
+Run ESLint (example from official docs):
+
+```bash
+npx eslint .
+```
+
+Run Prettier:
+
+```bash
+npx prettier . --write
+```
+
+For CI (official):
+
+```bash
+npx prettier . --check
+```
 
 ## Acceptance checklist
 - [ ] Lint script exists

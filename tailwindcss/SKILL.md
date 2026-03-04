@@ -20,11 +20,9 @@ Use this skill when you need to:
 
 ## Outputs (what you must produce)
 - A working Tailwind integration (build + CSS output wired into the app)
-- A minimal, validated config (`tailwind.config.*`) and `postcss.config.*` where needed
-- A base stylesheet (`src/styles.css` or equivalent) with:
-  - `@tailwind base;`
-  - `@tailwind components;`
-  - `@tailwind utilities;`
+- A PostCSS configuration (Angular guide uses `.postcssrc.json`)
+- A base stylesheet (`src/styles.css` or equivalent) that imports Tailwind:
+  - `@import "tailwindcss";`
 - A short verification section (what command to run + what to look for)
 
 ## Procedure
@@ -39,28 +37,26 @@ Use this skill when you need to:
 - Find where global CSS is loaded.
 
 ### 2) Install dependencies
-Install the Tailwind toolchain for most setups:
-- `tailwindcss`
-- `postcss`
-- `autoprefixer`
+Prefer the current official approach for your framework.
 
-If the framework has its own adapter, prefer the official docs.
+For Angular (official guide), install the Tailwind PostCSS plugin and peer deps:
 
-### 3) Initialize Tailwind config
-- Create Tailwind config via `tailwindcss init -p` if appropriate.
-- Ensure `content` includes all template/TS/JS/HTML locations.
+```bash
+npm install tailwindcss @tailwindcss/postcss postcss --force
+```
 
-Example `content` targets:
-- `./index.html`
-- `./src/**/*.{js,ts,jsx,tsx,html}`
+### 3) Configure PostCSS (Angular)
+Create `.postcssrc.json` in the project root:
+
+```json
+{ "plugins": { "@tailwindcss/postcss": {} } }
+```
 
 ### 4) Add Tailwind to your CSS entry
-Create/modify the global stylesheet used by the app and add:
+For Angular (official guide), add this to `./src/styles.css`:
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 ```
 
 ### 5) Add sane defaults
@@ -72,6 +68,12 @@ Create/modify the global stylesheet used by the app and add:
 - Add a temporary test element using Tailwind classes.
 - Run the dev server/build.
 - Confirm styles are applied.
+
+Angular verification:
+
+```bash
+ng serve
+```
 
 ## Recommended conventions
 
@@ -93,12 +95,11 @@ Create/modify the global stylesheet used by the app and add:
 - Prefer subtle shadow: `shadow-sm`
 
 ## Common pitfalls
-- Missing `content` globs results in “Tailwind not working”
 - CSS file not imported in the entrypoint
 - Over-aggressive CSS reset from other libraries
 
 ## Example acceptance checklist
 - [ ] `tailwindcss` appears in `package.json`
-- [ ] `tailwind.config.*` has correct `content` globs
-- [ ] Global CSS contains `@tailwind ...` directives
+- [ ] `.postcssrc.json` exists (Angular guide)
+- [ ] Global CSS imports Tailwind (`@import "tailwindcss";`)
 - [ ] Running the dev server shows Tailwind styles in the browser

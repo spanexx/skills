@@ -24,6 +24,74 @@ license: Proprietary
   - invalidation plan
 - Verification steps (how to confirm cache hits)
 
+## NestJS: official cache module (current)
+
+### 1) Install
+
+For NestJS caching, install the official packages:
+
+```bash
+npm install @nestjs/cache-manager cache-manager
+```
+
+### 2) Enable CacheModule
+
+In your module (often `AppModule`), enable caching:
+
+```ts
+import { CacheModule } from '@nestjs/cache-manager';
+
+imports: [CacheModule.register()],
+```
+
+Common options:
+
+```ts
+CacheModule.register({
+  isGlobal: true,
+  ttl: 5000, // milliseconds
+});
+```
+
+### 3) Use the cache manager
+
+Inject using the `CACHE_MANAGER` token:
+
+```ts
+import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager';
+
+constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
+```
+
+Then:
+
+```ts
+await this.cacheManager.get('key');
+await this.cacheManager.set('key', 'value', 1000);
+await this.cacheManager.del('key');
+await this.cacheManager.clear();
+```
+
+### 4) Switch to Redis store (Keyv)
+
+Nest's cache-manager uses Keyv underneath; to use Redis install:
+
+```bash
+npm install @keyv/redis
+```
+
+Then register a Redis store (example pattern uses `registerAsync`):
+
+```ts
+import KeyvRedis from '@keyv/redis';
+
+CacheModule.registerAsync({
+  useFactory: async () => ({
+    stores: [new KeyvRedis('redis://localhost:6379')],
+  }),
+});
+```
+
 ## Recommended approach: Cache-aside
 ### Read path
 1. Compute cache key
