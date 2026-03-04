@@ -1,6 +1,6 @@
 ---
 name: nestjs
-description: Build and maintain NestJS backend applications: modules, controllers, services, DTO validation, config, logging, auth patterns, and best practices. Use when implementing APIs with NestJS.
+description: "Build and maintain NestJS backend applications: modules, controllers, services, DTO validation, config, logging, auth patterns, and best practices. Use when implementing APIs with NestJS."
 metadata:
   author: spanexx
   version: "1.0.0"

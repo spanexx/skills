@@ -1,6 +1,6 @@
 ---
 name: jest-testing
-description: Add or extend Jest testing for Node/NestJS projects: unit tests, mocks, coverage, and CI integration. Use when setting up automated tests or improving test suites.
+description: "Add or extend Jest testing for Node/NestJS projects: unit tests, mocks, coverage, and CI integration. Use when setting up automated tests or improving test suites."
 metadata:
   author: spanexx
   version: "1.0.0"

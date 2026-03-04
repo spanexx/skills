@@ -1,6 +1,6 @@
 ---
 name: angular
-description: Build and maintain Angular frontend applications: components, routing, services, forms, state, and testing. Use when implementing Angular features in a fullstack app.
+description: "Build and maintain Angular frontend applications: components, routing, services, forms, state, and testing. Use when implementing Angular features in a fullstack app."
 metadata:
   author: spanexx
   version: "1.0.0"

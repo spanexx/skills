@@ -1,6 +1,6 @@
 ---
 name: redis-caching
-description: Implement caching with Redis in Node/NestJS: cache-aside, TTL strategy, invalidation, key design, and safety. Use when improving performance with Redis caching.
+description: "Implement caching with Redis in Node/NestJS: cache-aside, TTL strategy, invalidation, key design, and safety. Use when improving performance with Redis caching."
 metadata:
   author: spanexx
   version: "1.0.0"

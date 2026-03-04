@@ -1,6 +1,6 @@
 ---
 name: qa-engineer
-description: Improve quality for fullstack apps (NestJS + Angular): test planning, test cases, automation hooks, and regression safety. Use when adding tests or validating behavior changes.
+description: "Improve quality for fullstack apps (NestJS + Angular): test planning, test cases, automation hooks, and regression safety. Use when adding tests or validating behavior changes."
 metadata:
   author: spanexx
   version: "1.0.0"
