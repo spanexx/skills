@@ -75,6 +75,20 @@ Angular verification:
 ng serve
 ```
 
+Build verification (validated in a real Angular repo):
+
+```bash
+npm run build
+```
+
+Test verification (Angular + Vitest):
+
+```bash
+npm test -- --watch=false --no-progress
+```
+
+Note: in some Angular+Vitest setups, `--browsers=ChromeHeadless` requires installing a Vitest browser provider package. Prefer the non-watch test command above unless you intentionally set up browser testing.
+
 ## Recommended conventions
 
 ### Class organization

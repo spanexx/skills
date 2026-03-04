@@ -34,6 +34,12 @@ For NestJS caching, install the official packages:
 npm install @nestjs/cache-manager cache-manager
 ```
 
+If you run into npm peer dependency conflicts in an existing repo, retry with:
+
+```bash
+npm install @nestjs/cache-manager cache-manager --legacy-peer-deps
+```
+
 ### 2) Enable CacheModule
 
 In your module (often `AppModule`), enable caching:
@@ -80,6 +86,12 @@ Nest's cache-manager uses Keyv underneath; to use Redis install:
 npm install @keyv/redis
 ```
 
+If you run into peer-deps conflicts in an existing repo, this combination worked in practice:
+
+```bash
+npm install @nestjs/cache-manager cache-manager @keyv/redis --legacy-peer-deps
+```
+
 Then register a Redis store (example pattern uses `registerAsync`):
 
 ```ts
@@ -87,10 +99,20 @@ import KeyvRedis from '@keyv/redis';
 
 CacheModule.registerAsync({
   useFactory: async () => ({
-    stores: [new KeyvRedis('redis://localhost:6379')],
+    stores: [new KeyvRedis(process.env.REDIS_URL ?? 'redis://localhost:6379')],
   }),
 });
 ```
+
+#### Real-world dev note: port conflicts
+
+If you already have Redis on `6379`, map Docker Redis to a different host port (example: `6380`) and set:
+
+```bash
+REDIS_URL=redis://localhost:6380
+```
+
+When verifying cache behavior, consider returning an `X-Cache: MISS|HIT` header and logging `CACHE_MISS`/`CACHE_HIT` to prove the second request is served from cache.
 
 ## Recommended approach: Cache-aside
 ### Read path

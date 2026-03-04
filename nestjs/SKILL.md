@@ -59,6 +59,20 @@ nest g resource <name>
 nest build
 ```
 
+Run locally with explicit env vars (useful for demos):
+
+```bash
+PORT=3002 npm run start
+```
+
+If you integrate Redis caching, prefer using `REDIS_URL`:
+
+```bash
+REDIS_URL=redis://localhost:6380 PORT=3002 npm run start
+```
+
+If you get `EADDRINUSE`, pick a different `PORT` (don’t kill random processes).
+
 ## Core rules
 - Keep controllers thin; put logic in services.
 - Use DTOs for request/response shapes.

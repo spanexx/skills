@@ -29,6 +29,9 @@ Common:
 - Expose ports
 - Provide healthchecks where helpful
 
+Port conflict tip:
+- If a common port (like Redis `6379`) is already in use on the host, map to a different host port (example `6380:6379`) and have the app read an env var like `REDIS_URL`.
+
 ### 3) App integration
 - Ensure app reads env vars for connection
 - Avoid hardcoding localhost/ports
